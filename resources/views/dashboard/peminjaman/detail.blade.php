@@ -31,6 +31,7 @@
                         <h2 class="font-semibold text-lg leading-tight">
                             {{ __('Peminjaman') }}
                         </h2>
+                        <h2 class="tracking-widest text-sm title-font my-3">Nama peminjam: {{ $peminjaman->user->nama_lengkap }}</h2>
                         <h2 class="tracking-widest text-sm title-font my-3">Kode peminjaman: {{ $peminjaman->kode }}</h2>
                         <h2 class="tracking-widest text-sm title-font mb-3">Tanggal peminjaman: {{ $peminjaman->tgl_peminjaman }}</h2>
                         <h2 class="tracking-widest text-sm title-font mb-3">Tanggal kembali: {{ $peminjaman->tgl_kembali }}</h2>

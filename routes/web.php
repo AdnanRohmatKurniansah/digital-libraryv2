@@ -46,17 +46,19 @@ Route::get('/detailbuku/{id}', function($id) {
 });
 
 Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function() {
-    Route::get('/koleksi', [KoleksiController::class, 'koleksi']);
-    Route::post('/koleksi', [KoleksiController::class, 'tambahKoleksi']);
-    Route::delete('/koleksi/{koleksi}', [KoleksiController::class, 'hapusKoleksi']);
-    Route::get('/peminjam/peminjamanku', [PeminjamanController::class, 'peminjamanku']);
-    Route::post('/peminjaman', [PeminjamanController::class, 'pinjam']);
-    Route::get('/peminjaman/{id}', [PeminjamanController::class, 'detailPeminjaman']);
-    Route::post('/ulasan', [UlasanController::class, 'beriUlasan']);
-    Route::get('/dendaku', [DendaController::class, 'dendaku']);
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::middleware('AdminNotAllowed')->group(function() {
+        Route::get('/koleksi', [KoleksiController::class, 'koleksi']);
+        Route::post('/koleksi', [KoleksiController::class, 'tambahKoleksi']);
+        Route::delete('/koleksi/{koleksi}', [KoleksiController::class, 'hapusKoleksi']);
+        Route::get('/peminjam/peminjamanku', [PeminjamanController::class, 'peminjamanku']);
+        Route::post('/peminjaman', [PeminjamanController::class, 'pinjam']);
+        Route::get('/peminjaman/{id}', [PeminjamanController::class, 'detailPeminjaman']);
+        Route::post('/ulasan', [UlasanController::class, 'beriUlasan']);
+        Route::get('/dendaku', [DendaController::class, 'dendaku']);
+        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    });
     Route::middleware('PeminjamNotAllowed')->group(function() {
         Route::get('/', function () {
             return view('dashboard.dashboard', [

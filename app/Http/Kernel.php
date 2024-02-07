@@ -55,6 +55,7 @@ class Kernel extends HttpKernel
     protected $middlewareAliases = [
         'IsAdmin' => \App\Http\Middleware\IsAdmin::class,
         'PeminjamNotAllowed' => \App\Http\Middleware\PeminjamNotAllowed::class,
+        'AdminNotAllowed' => \App\Http\Middleware\AdminNotAllowed::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,

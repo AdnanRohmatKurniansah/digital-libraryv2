@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
         <link rel="stylesheet" href="/assets/main.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
+        {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script> --}}
         <!-- Styles -->
         <style>
             [x-cloak] {
@@ -21,7 +22,6 @@
                 -ms-word-break: break-all;
                 word-break: break-word;
             }
-
         </style>
 
         <!-- Scripts -->

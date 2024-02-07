@@ -39,33 +39,34 @@
                             <form action="/dashboard/koleksi" method="post">
                                 @csrf
                                 <input type="hidden" name="id_buku" value="{{ $buku->id }}">
-                                <button class="text-white mr-5 bg-black border-0 py-2 px-6 focus:outline-none hover:bg-gray-900 rounded" onclick="return confirm('Tambahkan buku ini ke koleksi anda?')">Tambah koleksi</button>
+                                <button class="text-white mr-5 bg-[#9333EA] border-0 py-2 px-6 focus:outline-none hover:bg-[#9344dd] rounded" onclick="return confirm('Tambahkan buku ini ke koleksi anda?')">Tambah koleksi</button>
                             </form>
                         @else
-                            <button class="text-white bg-blue-800 mr-5 rounded border-0 py-2 px-6 focus:outline-none hover:bg-blue-900" type="button"><i class="fa fa-star text-warning"></i>Koleksi</button>
+                            <button class="text-white bg-[#9333EA] mr-5 rounded border-0 py-2 px-6 focus:outline-none hover:bg-[#9344dd]" type="button"><i class="fa fa-star text-warning"></i>Koleksi</button>
                         @endif
                         @if (!$dipinjam)
                             <form action="/dashboard/peminjaman" method="post">
                                 @csrf
                                 <input type="hidden" name="id_buku" value="{{ $buku->id }}">
-                                <button class="py-2 px-6 border border-black text-black bg-white hover:bg-black hover:text-white rounded" onclick="return confirm('Anda ingin meminjam buku ini?')">Pinjam</button>
+                                <button class="py-2 px-6 border border-[#9333EA] text-[#9333EA] bg-white hover:bg-[#9333EA] hover:text-white rounded" onclick="return confirm('Anda ingin meminjam buku ini?')">Pinjam</button>
                             </form>
                         @else
-                            <button class="py-2 px-6 border border-black text-black bg-white hover:bg-black hover:text-white rounded">Dipinjam</button>
+                            <button class="py-2 px-6 border border-black text-black bg-white hover:bg-[#9333EA] hover:text-white rounded">Dipinjam</button>
                         @endif
                     @else
                         <form action="/dashboard/koleksi" method="post">
                             @csrf
                             <input type="hidden" name="id_buku" value="{{ $buku->id }}">
-                            <button class="text-white mr-5 bg-black border-0 py-2 px-6 focus:outline-none hover:bg-gray-900 rounded" onclick="return confirm('Tambahkan buku ini ke koleksi anda?')">Tambah koleksi</button>
+                            <button class="text-white mr-5 bg-[#9333EA] border-0 py-2 px-6 focus:outline-none hover:bg-[#9344dd] rounded" onclick="return confirm('Tambahkan buku ini ke koleksi anda?')">Tambah koleksi</button>
                         </form>
                         <form action="/dashboard/peminjaman" method="post">
                             @csrf
                             <input type="hidden" name="id_buku" value="{{ $buku->id }}">
-                            <button class="py-2 px-6 border border-black text-black bg-white hover:bg-black hover:text-white rounded" onclick="return confirm('Anda ingin meminjam buku ini?')">Pinjam</button>
+                            <button class="py-2 px-6 border border-[#9333EA] text-[#9333EA] bg-white hover:bg-[#9333EA] hover:text-white rounded" onclick="return confirm('Anda ingin meminjam buku ini?')">Pinjam</button>
                         </form>
                     @endif
                 </div>
+                {{-- <div style="width: 500px" id="reader">Scan</div> --}}
             </div>
           </div>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-16 mt-20">
@@ -95,6 +96,7 @@
                     </div>
                 @endif
             </div>
+            
             <div class="berikan-ulasan">
                 <h1 class="text-gray-900 text-2xl title-font font-medium mb-3">Berikan ulasan</h1>
                 <form action="/dashboard/ulasan" method="post">
@@ -113,10 +115,10 @@
                         <label class="star" for="star1" title="Bad" aria-hidden="true"></label>
                     </div>
                     <div class="form">
-                        <textarea  placeholder="Ulasan..." id="ulasan" name="ulasan" class="w-full rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 leading-6 transition-colors duration-200 ease-in-out">{{ old('ulasan') }}</textarea>
+                        <textarea placeholder="Ulasan..." id="ulasan" name="ulasan" class="w-full rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 leading-6 transition-colors duration-200 ease-in-out">{{ old('ulasan') }}</textarea>
                         <x-form.error :messages="$errors->get('ulasan')" />
                     </div>
-                    <button class="text-white mt-5 bg-black border-0 py-2 px-6 focus:outline-none hover:bg-gray-900 rounded">Submit</button>
+                    <button class="text-white mt-5 bg-[#9333EA] border-0 py-2 px-6 focus:outline-none hover:bg-[#9344dd] rounded">Submit</button>
                 </form>
             </div>
           </div>

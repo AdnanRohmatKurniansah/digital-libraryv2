@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Peminjaman;
 use App\Models\Ulasan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +14,15 @@ class UlasanController extends Controller
         if (Auth::check()) {
             $id_user = Auth::user()->id;
             $id_buku = $request->input('id_buku');
+
+            $peminjamanExist = Peminjaman::where('id_user', $id_user)
+            ->where('id_buku', $id_buku)
+            ->whereIn('status', ['dipinjam', 'dikembalikan']) 
+            ->exists();
+
+            if (!$peminjamanExist) {
+                return redirect()->back()->with('error', 'Anda hanya bisa beri ulasan ke buku yg sudah dipinjam.');
+            }
 
             $ulasanExist = Ulasan::where('id_user', $id_user)
             ->where('id_buku', $id_buku)
@@ -36,5 +46,5 @@ class UlasanController extends Controller
         } else {
             return redirect('/login')->with('logFirst', 'Anda harus login terlebih dahulu');
         }
-    }
+    }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
 }

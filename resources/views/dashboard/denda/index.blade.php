@@ -44,11 +44,11 @@
                                     {{ __('Sudah dibayar') }}
                                 </x-button>
                             @else
-                                <x-button class="self-end flex-shrink-0" variant="primary" x-data="" x-on:click.prevent="$dispatch('open-modal', 'bayar-denda')">
+                                <x-button class="self-end flex-shrink-0" variant="primary" x-data="" x-on:click.prevent="$dispatch('open-modal', 'bayar-denda{{ $denda->id }}')">
                                     {{ __('Bayar') }}
                                 </x-button>
                             @endif
-                            <x-modal name="bayar-denda" :show="$errors->isNotEmpty()" focusable>
+                            <x-modal name="bayar-denda{{ $denda->id }}" :show="$errors->isNotEmpty()" focusable>
                                 <form method="post" action="/dashboard/denda/{{ $denda->id }}" class="p-6">
                                     @csrf
                                     @method('put')

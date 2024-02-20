@@ -13,10 +13,12 @@
                         <div class="col">
                             <h2 class="text-sm title-font text-gray-500 tracking-widest">Kategori: {{ implode(', ', $buku->kategoris->pluck('nama')->toArray()) }}</h2>
                             <h2 class="text-sm title-font text-gray-500 tracking-widest mt-3">Jumlah: {{ $buku->jumlah == null ? 'Stok buku sedang kosong' : $buku->jumlah}}</h2>
-                            <h2 class="text-sm title-font text-gray-500 tracking-widest mt-3">Penulis: {{ $buku->penulis }}</h2>
+                            <h2 class="text-sm title-font text-gray-500 tracking-widest 
+                            mt-3">Rating: {{ $buku->ulasans()->avg('rating') == null ? 'Belum ada yg memberikan penilaian' : number_format($buku->ulasans()->avg('rating'), 2) }}</h2>
                         </div>
                         <div class="col">
                             <h2 class="text-sm title-font text-gray-500 tracking-widest">Tahun terbit: {{ $buku->tahun_terbit }}</h2>
+                            <h2 class="text-sm title-font text-gray-500 tracking-widest mt-3">Penulis: {{ $buku->penulis }}</h2>
                             <h2 class="text-sm title-font text-gray-500 tracking-widest mt-3">Penerbit: {{ $buku->penerbit }}</h2>
                         </div>
                     </div>
@@ -66,7 +68,6 @@
                         </form>
                     @endif
                 </div>
-                {{-- <div style="width: 500px" id="reader">Scan</div> --}}
             </div>
           </div>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-16 mt-20">

@@ -13,10 +13,10 @@
                   <tr>
                     <th>#</th>
                     <th>Kode peminjaman</th>
-                    <th>Nama peminjam</th>
                     <th>Dikembalikan</th>
                     <th>Nominal</th>
                     <th>Dibayar</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>

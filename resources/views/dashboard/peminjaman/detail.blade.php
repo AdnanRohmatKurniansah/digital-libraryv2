@@ -7,17 +7,18 @@
   
     <div class="space-y-6">
         <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg dark:bg-gray-800">
-            <div class="max-w-full">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div class="max-w-3xl">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-28">
                     <div class="book">
                         <h2 class="font-semibold text-lg leading-tight">
                             {{ __('Detail buku') }}
                         </h2>
-                        <img class="my-3" style="max-height: 300px; min-width: 100%;" src="{{ asset('storage/' . $peminjaman->buku->sampul) }}" alt="" srcset="">
+                        <img class="mt-3 mb-5" style="max-height: 300px; min-width: 100%;" src="{{ asset('storage/' . $peminjaman->buku->sampul) }}" alt="" srcset="">
                         <div class="grid grid-cols-2 gap-4">
                             <div class="col">
                                 <h2 class="tracking-widest text-sm title-font mb-3">Judul: {{ $peminjaman->buku->judul }}</h2>
                                 <h2 class="tracking-widest text-sm title-font mb-3">Kategori: {{ implode(', ', $peminjaman->buku->kategoris->pluck('nama')->toArray()) }}</h2>
+                                <h2 class="tracking-widest text-sm title-font mb-3">Rating: {{ $peminjaman->buku->ulasans()->avg('rating') == null ? 'Belum ada yg memberikan penilaian' : number_format($peminjaman->buku->ulasans()->avg('rating'), 2) }}</h2>
                                 <h2 class="tracking-widest text-sm title-font mb-3">Jumlah: {{ $peminjaman->buku->jumlah }}</h2>
                             </div>
                             <div class="col">

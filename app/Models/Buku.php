@@ -30,7 +30,7 @@ class Buku extends Model
     }
 
     public function ulasans() {
-        return $this->hasMany(Ulasan::class);
+        return $this->hasMany(Ulasan::class, 'id_buku');
     }
 
     public function peminjamans() {

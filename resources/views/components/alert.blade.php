@@ -69,7 +69,7 @@
 		})
     </script>
 @endif
-{{-- @if(Session::has('logFirst'))
+@if(Session::has('logFirst'))
     <script>
         const Toast = Swal.mixin({
 		toast: true,
@@ -92,4 +92,4 @@
 		title: '{{ session("logFirst") }}'
 		})
     </script>
-@endif --}}
+@endif

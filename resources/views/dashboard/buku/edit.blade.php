@@ -23,17 +23,20 @@
                         <x-form.error :messages="$errors->get('deskripsi')" />
                     </div>
                     <div class="space-y-2 mb-3">
-                        <x-form.label for="id_kategori" :value="__('Kategori')" />
-                        <select name="id_kategori" required value="{{ old('id_kategori') }}" class="block border-gray-400 rounded-md w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
-                            @foreach ($kategoris as $kategori)
-                            @if(old('id_kategori', $buku->id_kategori) == $kategori->id)
-                                <option selected value="{{ $kategori->id }}">{{ $kategori->nama }}</option>
-                            @else
-                                 <option value="{{ $kategori->id }}">{{ $kategori->nama }}</option>
-                            @endif
-                            @endforeach
-                        </select>
-                        <x-form.error :messages="$errors->get('id_kategori')" />
+                        <x-form.label for="id_kategories" :value="__('Kategori')" />
+                        @php
+                            $selectedId_Kategori = $buku->kategoris->pluck('id')->toArray();
+                        @endphp
+                        @foreach ($kategoris as $kategori)
+                        <div class="flex items-center">
+                            <input id="kategori_{{ $kategori->id }}" class="form-checkbox h-5 w-5 text-indigo-600 @error('id_kategories') is-invalid @enderror" type="checkbox" name="id_kategories[]" value="{{ $kategori->id }}" @checked(in_array($kategori->id, $selectedId_Kategori))>
+                            <label for="kategori_{{ $kategori->id }}" class="ml-2 text-sm text-gray-600">{{ $kategori->nama }}</label>
+                        </div>
+                        @error('id_kategories')
+                            <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                        @enderror
+                        @endforeach
+                        <x-form.error :messages="$errors->get('id_kategories')" />
                     </div>
                     <div class="space-y-2 mb-3">
                         <x-form.label for="penulis" :value="__('Penulis')" />

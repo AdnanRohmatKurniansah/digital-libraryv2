@@ -33,14 +33,14 @@
                   <td>
                     <img width="50" src="{{ asset('storage/' . $buku->sampul) }}" alt="">
                   </td>
-                  <td>{{ $buku->kategori->nama }}</td>
+                  <td>{{ implode(', ', $buku->kategoris->pluck('nama')->toArray()) }}</td>
                   <td>{{ $buku->penulis }}</td>
                   <td>{{ $buku->penerbit }}</td>
                   <td>{{ $buku->jumlah }}</td>
                   <td>{{ $buku->tahun_terbit }}</td>
                   <td>
                     <div class="flex gap-4">
-                      <x-button href="/dashboard/buku/{{ $buku->id }}/edit" variant="success">
+                      <x-button href="/dashboard/buku/{{ Crypt::encryptString($buku->id) }}/edit" variant="success">
                         <i class="fa-solid fa-pen-to-square"></i>
                       </x-button>
                       <form action="/dashboard/buku/{{ $buku->id }}" method="post">

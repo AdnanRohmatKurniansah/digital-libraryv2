@@ -30,7 +30,7 @@
                     <td>
                       <img width="50" src="{{ asset('storage/' . $koleksi->buku->sampul) }}" alt="">
                     </td>
-                    <td>{{ $koleksi->buku->kategori->nama }}</td>
+                    <td>{{ implode(', ', $koleksi->buku->kategoris->pluck('nama')->toArray()) }}</td>
                     <td>{{ $koleksi->buku->penulis }}</td>
                     <td>{{ $koleksi->buku->penerbit }}</td>
                     <td>{{ $koleksi->buku->jumlah }}</td>

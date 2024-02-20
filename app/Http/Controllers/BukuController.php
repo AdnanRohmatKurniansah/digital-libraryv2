@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Buku;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Storage;
 
 class BukuController extends Controller
@@ -36,7 +37,7 @@ class BukuController extends Controller
     {
         $data = $request->validate([
             'judul' => 'required|min:3|max:255',
-            'id_kategori' => 'required',
+            'id_kategories' => ['required', 'array'],
             'deskripsi' => 'required|max:255',
             'penulis'  => 'required|max:100',
             'penerbit'  => 'required|max:100',
@@ -49,7 +50,9 @@ class BukuController extends Controller
             $data['sampul'] = $request->file('sampul')->store('sampul_buku');
         } 
 
-        Buku::create($data);
+        if ($buku = Buku::create($data)) {
+            $buku->kategoris()->sync($data['id_kategories']);
+        }
 
         return redirect('/dashboard/buku')->with('success', 'Buku baru berhasil ditambahkan');
     }
@@ -65,8 +68,9 @@ class BukuController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Buku $buku)
-    {
+    public function edit($id)
+    {   $url = Crypt::decryptString($id);
+        $buku = Buku::findOrFail($url);
         return view('dashboard.buku.edit', [
             'buku' => $buku,
             'kategoris' => Kategori::orderBy('nama', 'asc')->get()
@@ -80,7 +84,7 @@ class BukuController extends Controller
     {
         $data = $request->validate([
             'judul' => 'required|min:3|max:255',
-            'id_kategori' => 'required',
+            'id_kategories' => ['required', 'array'],
             'deskripsi' => 'required|max:255',
             'penulis'  => 'required|max:100',
             'penerbit'  => 'required|max:100',
@@ -97,6 +101,7 @@ class BukuController extends Controller
         }
 
         $buku->update($data);
+        $buku->kategoris()->sync($data['id_kategories']);
 
         return redirect('/dashboard/buku')->with('update', 'Buku berhasil diupdate');
     }
@@ -105,7 +110,13 @@ class BukuController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(Buku $buku)
-    {
+    {   
+        $kategoribukus = $buku->kategoris;
+    
+        foreach ($kategoribukus as $kategori) {
+            $kategori->bukus()->detach($buku->id);
+        }
+
         if ($buku->sampul) {
             Storage::delete($buku->sampul);
         }

@@ -11,7 +11,8 @@ class Kategori extends Model
 
     protected $guarded = ['id'];
 
-    public function bukus() {
-        return $this->hasMany(Buku::class);
+    public function bukus()
+    {
+        return $this->belongsToMany(Buku::class, 'kategoribuku_relasi', 'id_kategori', 'id_buku');
     }
 }

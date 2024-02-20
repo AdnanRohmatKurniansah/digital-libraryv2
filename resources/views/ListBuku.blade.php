@@ -29,7 +29,7 @@
                           <img class="lg:h-48 md:h-36 w-full object-cover object-center" src="{{ asset('storage/' . $buku->sampul) }}" alt="blog">
                           <div class="p-6">
                             <div class="flex justify-between">
-                              <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">{{ $buku->kategori->nama }}</h2>
+                              <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">{{ implode(', ', $buku->kategoris->pluck('nama')->toArray()) }}</h2>
                               <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">{{ $buku->tahun_terbit }}</h2>
                             </div>
                             <h1 class="title-font text-lg font-medium text-gray-900 mb-3">{{ $buku->judul }}</h1>

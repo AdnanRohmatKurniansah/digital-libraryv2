@@ -79,7 +79,8 @@ class PeminjamanController extends Controller
         }
 
         $peminjaman->update([
-            'status' => 'dipinjam'
+            'status' => 'dipinjam',
+            'penanggung_jawab' => Auth::user()->id
         ]);
 
         $buku = Buku::where('id', $peminjaman->id_buku)->first();

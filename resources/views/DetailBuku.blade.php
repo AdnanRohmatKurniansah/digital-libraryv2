@@ -4,14 +4,14 @@
 <div class="detail-buku">
     <section class="text-gray-600 body-font overflow-hidden">
         <div class="container px-5 py-16 mx-auto">
-          <div class="mx-auto flex flex-wrap">
-            <img alt="..." class="lg:w-1/2 w-full object-cover object-center rounded" src="{{ asset('storage/' . $buku->sampul) }}" style="max-height: 350px">
-            <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-                <div class="border-b-2 pb-5 border-gray-100 mb-5">
+          <div class="mx-auto md:mx-24 flex flex-wrap">
+            <img alt="..." class="lg:w-1/3 w-full object-cover object-center rounded" src="{{ asset('storage/' . $buku->sampul) }}" style="max-height: 350px">
+            <div class="lg:w-2/3 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+                <div class="border-b-2 border-gray-100 mb-5">
                     <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{{ $buku->judul }}</h1>
                     <div class="grid grid-cols-2 mt-4">
                         <div class="col">
-                            <h2 class="text-sm title-font text-gray-500 tracking-widest">Kategori: {{ $buku->kategori->nama }}</h2>
+                            <h2 class="text-sm title-font text-gray-500 tracking-widest">Kategori: {{ implode(', ', $buku->kategoris->pluck('nama')->toArray()) }}</h2>
                             <h2 class="text-sm title-font text-gray-500 tracking-widest mt-3">Jumlah: {{ $buku->jumlah == null ? 'Stok buku sedang kosong' : $buku->jumlah}}</h2>
                             <h2 class="text-sm title-font text-gray-500 tracking-widest mt-3">Penulis: {{ $buku->penulis }}</h2>
                         </div>
@@ -20,7 +20,7 @@
                             <h2 class="text-sm title-font text-gray-500 tracking-widest mt-3">Penerbit: {{ $buku->penerbit }}</h2>
                         </div>
                     </div>
-                    <p class="leading-relaxed word-wrap mt-5">{{ $buku->deskripsi }}</p>
+                    <p class="leading-relaxed word-wrap my-5">{{ $buku->deskripsi }}</p>
                 </div>
                 <div class="flex">
                     @if (Auth::check())

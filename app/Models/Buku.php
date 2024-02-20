@@ -11,9 +11,9 @@ class Buku extends Model
 
     protected $guarded = ['id'];
 
-    public function kategori()
+    public function kategoris()
     {
-        return $this->belongsTo(Kategori::class, 'id_kategori');
+        return $this->belongsToMany(Kategori::class, 'kategoribuku_relasi', 'id_buku', 'id_kategori');
     }
 
     public function scopeFilter($query, array $filters) 

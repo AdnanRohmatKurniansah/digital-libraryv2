@@ -45,19 +45,20 @@ Route::get('/detailbuku/{id}', function($id) {
     ]);
 });
 
+
 Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function() {
+    Route::get('/peminjaman/{id}', [PeminjamanController::class, 'detailPeminjaman']);
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::middleware('AdminNotAllowed')->group(function() {
         Route::get('/koleksi', [KoleksiController::class, 'koleksi']);
         Route::post('/koleksi', [KoleksiController::class, 'tambahKoleksi']);
         Route::delete('/koleksi/{koleksi}', [KoleksiController::class, 'hapusKoleksi']);
         Route::get('/peminjam/peminjamanku', [PeminjamanController::class, 'peminjamanku']);
         Route::post('/peminjaman', [PeminjamanController::class, 'pinjam']);
-        Route::get('/peminjaman/{id}', [PeminjamanController::class, 'detailPeminjaman']);
         Route::post('/ulasan', [UlasanController::class, 'beriUlasan']);
         Route::get('/dendaku', [DendaController::class, 'dendaku']);
-        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     });
     Route::middleware('PeminjamNotAllowed')->group(function() {
         Route::get('/', function () {
@@ -69,7 +70,12 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function() {
             ]);
         })->name('dashboard');
         Route::resource('/buku/kategori', KategoriController::class);
-        Route::resource('/buku', BukuController::class);
+        Route::get('/buku', [BukuController::class, 'index']);
+        Route::get('/buku/create', [BukuController::class, 'create']);
+        Route::post('/buku', [BukuController::class, 'store']);
+        Route::get('/buku/{id}/edit', [BukuController::class, 'edit']);
+        Route::put('/buku/{buku}', [BukuController::class, 'update']);
+        Route::delete('/buku/{buku}', [BukuController::class, 'destroy']);
         Route::get('/peminjaman', [PeminjamanController::class, 'peminjaman']);
         Route::post('/peminjaman/inputkodepinjam', [PeminjamanController::class, 'inputKodePinjam']);
         Route::post('/peminjaman/inputkodepengembalian', [PeminjamanController::class, 'inputKodePengembalian']);

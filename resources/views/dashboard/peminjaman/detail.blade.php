@@ -13,11 +13,11 @@
                         <h2 class="font-semibold text-lg leading-tight">
                             {{ __('Detail buku') }}
                         </h2>
-                        <img class="my-3"  src="{{ asset('storage/' . $peminjaman->buku->sampul) }}" alt="" srcset="">
+                        <img class="my-3" style="max-height: 300px; min-width: 100%;" src="{{ asset('storage/' . $peminjaman->buku->sampul) }}" alt="" srcset="">
                         <div class="grid grid-cols-2 gap-4">
                             <div class="col">
                                 <h2 class="tracking-widest text-sm title-font mb-3">Judul: {{ $peminjaman->buku->judul }}</h2>
-                                <h2 class="tracking-widest text-sm title-font mb-3">Kategori: {{ $peminjaman->buku->kategori->nama }}</h2>
+                                <h2 class="tracking-widest text-sm title-font mb-3">Kategori: {{ implode(', ', $peminjaman->buku->kategoris->pluck('nama')->toArray()) }}</h2>
                                 <h2 class="tracking-widest text-sm title-font mb-3">Jumlah: {{ $peminjaman->buku->jumlah }}</h2>
                             </div>
                             <div class="col">
@@ -32,6 +32,7 @@
                             {{ __('Peminjaman') }}
                         </h2>
                         <h2 class="tracking-widest text-sm title-font my-3">Nama peminjam: {{ $peminjaman->user->nama_lengkap }}</h2>
+                        <h2 class="tracking-widest text-sm title-font my-3">Penanggung jawab: {{ $peminjaman->user->nama_lengkap }}</h2>
                         <h2 class="tracking-widest text-sm title-font my-3">Kode peminjaman: {{ $peminjaman->kode }}</h2>
                         <h2 class="tracking-widest text-sm title-font mb-3">Tanggal peminjaman: {{ $peminjaman->tgl_peminjaman }}</h2>
                         <h2 class="tracking-widest text-sm title-font mb-3">Tanggal kembali: {{ $peminjaman->tgl_kembali }}</h2>
@@ -50,5 +51,5 @@
             </div> 
         </div>    
     </div>
-  </x-app-layout>
+</x-app-layout>
   

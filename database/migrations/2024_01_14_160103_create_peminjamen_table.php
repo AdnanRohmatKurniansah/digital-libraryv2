@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('kode')->unique();
             $table->date('tgl_peminjaman')->default(now());
             $table->date('tgl_kembali');
+            $table->foreignId('penanggung_jawab')->nullable()->constrained('users')->onDelete('cascade');
             $table->date('dikembalikan')->nullable();
             $table->enum('status', ['diproses', 'dipinjam', 'dikembalikan'])->default('diproses');
             $table->timestamps();

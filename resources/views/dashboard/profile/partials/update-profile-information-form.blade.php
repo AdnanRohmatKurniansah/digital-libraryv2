@@ -24,18 +24,18 @@
         <div class="space-y-2">
             <x-form.label
                 for="name"
-                :value="__('Name')"
+                :value="__('Nama lengkap')"
             />
 
             <x-form.input
                 id="name"
-                name="name"
+                name="nama_lengkap"
                 type="text"
                 class="block w-full"
-                :value="old('name', $user->name)"
+                :value="old('nama_lengkap', $user->nama_lengkap)"
                 required
                 autofocus
-                autocomplete="name"
+                autocomplete="nama_lengkap"
             />
 
             <x-form.error :messages="$errors->get('name')" />

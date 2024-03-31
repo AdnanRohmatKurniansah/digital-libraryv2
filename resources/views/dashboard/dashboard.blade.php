@@ -62,8 +62,8 @@
   var ctxBar = document.getElementById("bars")
   var peminjamans = JSON.parse('{!! json_encode($peminjamans) !!}');
   console.log(peminjamans)
-  var labels = peminjamans.map(pengaduan => pengaduan.date); 
-  var counts = peminjamans.map(pengaduan => pengaduan.count);
+  var labels = peminjamans.map(peminjaman => peminjaman.date); 
+  var counts = peminjamans.map(peminjaman => peminjaman.count);
   var myBar = new Chart(ctxBar, {
   type: 'bar',
   data: {

@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
         <title>Laravel</title>
         <link href="https://cdn.jsdelivr.net/npm/daisyui@4.5.0/dist/full.min.css?v=3" rel="stylesheet" type="text/css" />
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

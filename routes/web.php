@@ -63,12 +63,12 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function() {
     Route::middleware('PeminjamNotAllowed')->group(function() {
         Route::get('/', function () {
             return view('dashboard.dashboard', [
-                'peminjamans' => Peminjaman::select(DB::raw('DATE_FORMAT(created_at, "%M") AS date'), DB::raw('COUNT(*) AS count'))
-                ->groupBy(DB::raw('DATE_FORMAT(created_at, "%M")'))
-                ->orderBy(DB::raw('DATE_FORMAT(created_at, "%M")'))
-                ->get()
+                'peminjamans' => Peminjaman::select(DB::raw("TO_CHAR(created_at, 'Mon') AS date"), DB::raw('COUNT(*) AS count'))
+                    ->groupBy(DB::raw("TO_CHAR(created_at, 'Mon')"))
+                    ->orderBy(DB::raw("TO_CHAR(created_at, 'Mon')"))
+                    ->get()
             ]);
-        })->name('dashboard');
+        })->name('dashboard');        
         Route::resource('/buku/kategori', KategoriController::class);
         Route::get('/buku', [BukuController::class, 'index']);
         Route::get('/buku/create', [BukuController::class, 'create']);

@@ -28,7 +28,7 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $peminjaman->buku->judul }}</td>
                     <td>
-                        <img width="50" src="{{ asset('storage/' . $peminjaman->buku->sampul) }}" alt="">
+                        <img width="50" src="{{ $peminjaman->buku->sampul }}" alt="">
                     </td>
                     <td>{{ $peminjaman->kode }}</td>
                     <td>{{ $peminjaman->tgl_peminjaman }}</td>

@@ -1,7 +1,7 @@
 <x-app-layout>
   <x-slot name="header">
       <h2 class="font-semibold text-xl leading-tight">
-          {{ __('Data kategori') }}
+          {{ __('Data buku') }}
       </h2>
   </x-slot>
 
@@ -31,7 +31,7 @@
                   <td>{{ $loop->iteration }}</td>
                   <td>{{ $buku->judul }}</td>
                   <td>
-                    <img width="50" src="{{ asset('storage/' . $buku->sampul) }}" alt="">
+                    <img width="50" src="{{ $buku->sampul }}" alt="">
                   </td>
                   <td>{{ implode(', ', $buku->kategoris->pluck('nama')->toArray()) }}</td>
                   <td>{{ $buku->penulis }}</td>

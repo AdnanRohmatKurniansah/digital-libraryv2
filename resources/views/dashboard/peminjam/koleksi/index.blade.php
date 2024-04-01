@@ -28,7 +28,7 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $koleksi->buku->judul }}</td>
                     <td>
-                      <img width="50" src="{{ asset('storage/' . $koleksi->buku->sampul) }}" alt="">
+                      <img width="50" src="{{ $koleksi->buku->sampul }}" alt="">
                     </td>
                     <td>{{ implode(', ', $koleksi->buku->kategoris->pluck('nama')->toArray()) }}</td>
                     <td>{{ $koleksi->buku->penulis }}</td>

@@ -6,7 +6,8 @@ use App\Models\Buku;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
-use Illuminate\Support\Facades\Storage;
+// use Illuminate\Support\Facades\Storage;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class BukuController extends Controller
 {
@@ -47,7 +48,10 @@ class BukuController extends Controller
         ]);
 
         if($request->file('sampul')) {
-            $data['sampul'] = $request->file('sampul')->store('sampul_buku');
+            $uploadedFileUrl = Cloudinary::upload($request->file('sampul')->getRealPath(), [
+                'folder' => 'digital-library/sampul_buku'
+            ])->getSecurePath();
+            $data['sampul'] = $uploadedFileUrl;
         } 
 
         if ($buku = Buku::create($data)) {
@@ -95,9 +99,13 @@ class BukuController extends Controller
 
         if ($request->file('sampul')) {
             if ($buku->sampul) {
-                Storage::delete($buku->sampul);
+                $publicId = basename($buku->sampul, '.' . pathinfo($buku->sampul)['extension']);
+                Cloudinary::destroy('digital-library/sampul_buku/' . $publicId);
             }
-            $data['sampul'] = $request->file('sampul')->store('sampul_buku');
+            $uploadedFileUrl = Cloudinary::upload($request->file('sampul')->getRealPath(), [
+                'folder' => 'digital-library/sampul_buku'
+            ])->getSecurePath();
+            $data['sampul'] = $uploadedFileUrl;
         }
 
         $buku->update($data);
@@ -118,7 +126,8 @@ class BukuController extends Controller
         }
 
         if ($buku->sampul) {
-            Storage::delete($buku->sampul);
+            $publicId = basename($buku->sampul, '.' . pathinfo($buku->sampul)['extension']);
+            Cloudinary::destroy('digital-library/sampul_buku/' . $publicId);
         }
         
         $buku->delete();

@@ -26,7 +26,7 @@
                     <div class="p-4 md:w-1/4">
                       <a href="/detailbuku/{{ Crypt::encryptString($buku->id) }}">
                         <div class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
-                          <img class="h-1/2 lg:h-48 md:h-36 w-full object-cover object-center" src="{{ asset('storage/' . $buku->sampul) }}" alt="blog">
+                          <img class="h-1/2 lg:h-48 md:h-36 w-full object-cover object-center" src="{{ $buku->sampul }}" alt="blog">
                           <div class="p-6">
                             <div class="flex justify-between">
                               <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">{{ implode(', ', $buku->kategoris->pluck('nama')->toArray()) }}</h2>

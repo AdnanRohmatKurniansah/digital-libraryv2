@@ -65,7 +65,7 @@
                     <div class="space-y-2 mb-3">
                         <x-form.label for="sampul" :value="__('Sampul')" />
                         @if ($buku->sampul)
-                            <img src="{{ asset('storage/' . $buku->sampul) }}" class="sampul-preview mb-3" style="max-width: 200px">
+                            <img src="{{ $buku->sampul }}" class="sampul-preview mb-3" style="max-width: 200px">
                         @else
                             <img class="sampul-preview mb-3" style="max-width: 200px">
                         @endif

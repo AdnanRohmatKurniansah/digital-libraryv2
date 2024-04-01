@@ -13,7 +13,7 @@
                         <h2 class="font-semibold text-lg leading-tight">
                             {{ __('Detail buku') }}
                         </h2>
-                        <img class="mt-3 mb-5" style="max-height: 300px; min-width: 100%;" src="{{ asset('storage/' . $peminjaman->buku->sampul) }}" alt="" srcset="">
+                        <img class="mt-3 mb-5" style="max-height: 300px; min-width: 100%;" src="{{ $peminjaman->buku->sampul }}" alt="" srcset="">
                         <div class="grid grid-cols-2 gap-4">
                             <div class="col">
                                 <h2 class="tracking-widest text-sm title-font mb-3">Judul: {{ $peminjaman->buku->judul }}</h2>
